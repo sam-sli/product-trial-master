@@ -1,4 +1,6 @@
 import { Component, OnInit, inject, signal } from "@angular/core";
+import { CartSidebarComponent } from "app/cart-sidebar/cart-sidebar.component";
+import { CartService } from "app/cart-sidebar/cart.service";
 import { Product } from "app/products/data-access/product.model";
 import { ProductsService } from "app/products/data-access/products.service";
 import { ProductFormComponent } from "app/products/ui/product-form/product-form.component";
@@ -29,10 +31,11 @@ const emptyProduct: Product = {
   templateUrl: "./product-list.component.html",
   styleUrls: ["./product-list.component.scss"],
   standalone: true,
-  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent],
+  imports: [DataViewModule, CardModule, ButtonModule, DialogModule, ProductFormComponent, CartSidebarComponent],
 })
 export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
+  cartService = inject(CartService);
 
   public readonly products = this.productsService.products;
 
@@ -75,5 +78,9 @@ export class ProductListComponent implements OnInit {
 
   private closeDialog() {
     this.isDialogVisible = false;
+  }
+
+  addToCart(product : Product){
+    this.cartService.addToCart(product);
   }
 }

@@ -1,0 +1,41 @@
+<div class="cart-sidebar" [class.visible]="isVisible$ | async">
+    <div class="cart-header">
+      <h2>Panier</h2>
+      <button (click)="closeSidebar()" class="close-btn">×</button>
+    </div>
+    
+    <div class="cart-items">
+      <div *ngFor="let item of cartItems$ | async" class="cart-item">
+        <div class="item-details">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.price | currency:'$' }}</p>
+          <div class="stars">
+            <i 
+              *ngFor="let star of [1, 2, 3, 4, 5]; let i = index" 
+              class="star" 
+              [class.filled]="i < item.rating">
+              ★
+            </i>
+          </div>
+        </div>
+        
+        <div class="quantity-controls">
+          <button (click)="updateQuantity(item, item.quantity - 1)" 
+                  [disabled]="item.quantity <= 1">-</button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="updateQuantity(item, item.quantity + 1)" 
+                  [disabled]="item.quantity >= item.quantity">+</button>
+        </div>
+        
+        <button (click)="removeItem(item)" class="remove-btn">Supprimer</button>
+      </div>
+    </div>
+    
+    <div class="cart-footer" *ngIf="(cartItems$ | async)?.length">
+      <div class="total">
+        <span>Total:</span>
+        <span>{{ getTotal() | currency:'$' }}</span>
+      </div>
+      <button class="checkout-btn">Commander</button>
+    </div>
+  </div>

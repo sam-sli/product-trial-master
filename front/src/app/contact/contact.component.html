@@ -1,0 +1,51 @@
+<div class="contact-container">
+    <h1>Contactez-nous</h1>
+    
+    <div *ngIf="submitted" class="success-message">
+      Demande de contact envoyée avec succès
+    </div>
+
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" *ngIf="!submitted">
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input 
+          type="email" 
+          id="email"
+          formControlName="email"
+          [class.error]="isFieldInvalid('email')"
+        >
+        <div class="error-message" *ngIf="isFieldInvalid('email')">
+          <span *ngIf="contactForm.get('email')?.errors?.['required']">
+            L'email est obligatoire
+          </span>
+          <span *ngIf="contactForm.get('email')?.errors?.['email']">
+            L'email n'est pas valide
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message * <span class="char-count">
+          {{ contactForm.get('message')?.value?.length || 0 }}/300
+        </span></label>
+        <textarea 
+          id="message" 
+          formControlName="message" 
+          rows="6"
+          [class.error]="isFieldInvalid('message')"
+        ></textarea>
+        <div class="error-message" *ngIf="isFieldInvalid('message')">
+          <span *ngIf="contactForm.get('message')?.errors?.['required']">
+            Le message est obligatoire
+          </span>
+          <span *ngIf="contactForm.get('message')?.errors?.['maxlength']">
+            Le message ne doit pas dépasser 300 caractères
+          </span>
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="contactForm.invalid">
+        Envoyer
+      </button>
+    </form>
+  </div>

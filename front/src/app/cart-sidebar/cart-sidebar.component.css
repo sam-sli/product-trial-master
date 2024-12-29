@@ -1,0 +1,94 @@
+
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100vh;
+    background: white;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    transition: right 0.3s ease;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cart-sidebar.visible {
+    right: 0;
+  }
+
+  .cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .cart-items {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+
+  .cart-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .quantity-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .cart-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .total {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .close-btn, .remove-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: #666;
+  }
+
+  .remove-btn:hover {
+    color: red;
+  }
+  
+  .stars {
+    display: flex;
+    gap: 5px; /* Espacement entre les étoiles */
+  }
+  
+  .star {
+    font-size: 2rem; /* Taille des étoiles */
+    color: gray; /* Couleur par défaut des étoiles */
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .star.filled {
+    color: gold; /* Couleur des étoiles remplies */
+  }
+  

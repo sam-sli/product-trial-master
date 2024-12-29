@@ -6,7 +6,13 @@
         {{ title }}
     </div>
     <div class="p-toolbar-group-end">
-        <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+        <div class="cart-icon" (click)="openCart()">
+        <i class="pi pi-shopping-cart" style="font-size: 2rem" >
+        
+            <span class="cart-count" *ngIf="(cartItems$ | async)?.length">
+                {{ (cartItems$ | async)?.length }}
+              </span></i>
+              </div>
     </div>
 </p-toolbar>
 <p-splitter 

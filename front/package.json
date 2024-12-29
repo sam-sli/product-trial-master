@@ -35,11 +35,11 @@
     "zone.js": "0.14.7"
   },
   "devDependencies": {
-    "@angular/cli": "18.0.3",
+    "@angular/cli": "^18.0.3",
     "@angular/language-service": "18.0.2",
+    "@biomejs/biome": "1.7.2",
     "@types/chart.js": "2.9.30",
     "@types/node": "20.12.12",
-    "@biomejs/biome": "1.7.2",
     "ts-node": "7.0.0"
   }
 }
